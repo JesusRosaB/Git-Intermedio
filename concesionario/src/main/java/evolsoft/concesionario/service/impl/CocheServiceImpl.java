@@ -130,4 +130,5 @@ public class CocheServiceImpl implements CocheService {
 		return cochesInStock;
 	}
 
+       Coche soldCar = Optional.ofNullable(cocheDAO.findOne(idCoche)).orElseThrow(() -> new NotFoundExcept());
 }
