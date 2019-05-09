@@ -14,6 +14,8 @@ public interface CocheService {
 
 	CocheDTO create(CocheDTO cocheDTO);
 
+	void newSell(Integer idCoche, Integer idCliente, Integer idVendedor) throws NotFoundExcept;
+	
 	void update(Integer id, CocheDTO cocheDTO);
 
 	void delete(Integer idCoche);
