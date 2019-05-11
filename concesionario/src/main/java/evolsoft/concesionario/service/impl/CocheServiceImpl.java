@@ -35,10 +35,17 @@ public class CocheServiceImpl implements CocheService {
 	@Autowired
 	private DozerBeanMapper dozer;
 
-	@Overridepublic 
-	void newSell(Integer idCoche, Integer idCliente, Integer idVendedor) 
-	throws NotFoundExcept {Coche soldCar = cocheDAO.findOne(idCoche);soldCar.setFechaVenta(todaysDate());addClienteToSoldCar(idCliente, soldCar);addVendedorToSoldCar(idVendedor, soldCar);cocheDAO.save(soldCar);}public void addClienteToSoldCar(Integer idCliente, Coche coche) 
-	throws NotFoundExcept {ClienteDTO clienteCoche = clienteService.findById(idCliente);if(clienteCoche != null) {coche.setCliente(clienteService.map(clienteCoche));}}public void addVendedorToSoldCar(Integer idVendedor, Coche coche) throws NotFoundExcept {VendedorDTO vendedorCoche = vendedorService.findById(idVendedor);if(vendedorCoche != null) {coche.setVendedor(vendedorService.map(vendedorCoche));}}private String todaysDate() {Date today = Calendar.getInstance().getTime();return today.toString();}
+	@Override
+	public 	void newSell(Integer idCoche, Integer idCliente, Integer idVendedor) throws NotFoundExcept {
+		Coche soldCar = cocheDAO.findOne(idCoche);
+		soldCar.setFechaVenta(LocalDate.now().toString());
+		addClienteToSoldCar(idCliente, soldCar);
+		addVendedorToSoldCar(idVendedor, soldCar);
+		cocheDAO.save(soldCar);
+	}
+
+	public void addClienteToSoldCar(Integer idCliente, Coche coche) 
+	throws NotFoundExcept {ClienteDTO clienteCoche = clienteService.findById(idCliente);if(clienteCoche != null) {coche.setCliente(clienteService.map(clienteCoche));}}public void addVendedorToSoldCar(Integer idVendedor, Coche coche) throws NotFoundExcept {VendedorDTO vendedorCoche = vendedorService.findById(idVendedor);if(vendedorCoche != null) {coche.setVendedor(vendedorService.map(vendedorCoche));}}
 
 	@Override
 	public CocheDTO findById(Integer id) throws NotFoundExcept {
