@@ -18,6 +18,8 @@ public interface CocheService {
 
 	void delete(Integer idCoche);
 
+	void createList(List<CocheDTO> listCocheDto);
+	
 	public Coche map(CocheDTO coche);
 
 	public CocheDTO map(Coche coche);
