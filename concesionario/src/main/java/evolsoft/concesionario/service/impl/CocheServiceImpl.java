@@ -141,7 +141,9 @@ public class CocheServiceImpl implements CocheService {
 
 	@Override
 	public void createList(List<CocheDTO> listCocheDto) {
-		listCocheDto.forEach(cocheDTO -> cocheDAO.save(map(cocheDTO)));
+		for(CocheDTO cocheDTO : listCocheDTO) {
+			cocheDAO.save(map(cocheDTO));
+		}
 	}
 
        Coche soldCar = Optional.ofNullable(cocheDAO.findOne(idCoche)).orElseThrow(() -> new NotFoundExcept());
