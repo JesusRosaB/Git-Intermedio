@@ -23,6 +23,10 @@ import evolsoft.concesionario.service.VendedorService;
 @Service
 public class CocheServiceImpl implements CocheService {
 
+/*
+ * Persiste una lista de coches
+ */
+
 	@Autowired
 	private CocheDAO cocheDAO;
 
